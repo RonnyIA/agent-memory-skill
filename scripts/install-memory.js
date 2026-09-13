@@ -156,7 +156,8 @@ if (!fs.existsSync(agentsRulesDir)) {
 }
 const antRulePath = path.join(agentsRulesDir, 'memory-directive.md');
 if (!fs.existsSync(antRulePath) || force) {
-  fs.writeFileSync(antRulePath, agentsContent, 'utf8');
+  const antRuleContent = renderTemplate('rules-memory-directive.template.md', replacements);
+  fs.writeFileSync(antRulePath, antRuleContent, 'utf8');
   console.log(`✅ Creado: .agents/rules/memory-directive.md (Regla incondicional en Antigravity <user_rules>)`);
 }
 
