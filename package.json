@@ -1,0 +1,34 @@
+{
+  "name": "agent-memory-skill",
+  "version": "1.0.0",
+  "description": "Universal 2-tier persistent rolling memory system (memory.md + CHANGELOG_HISTORY.md) for AI coding agents (Antigravity, Claude Code, Cursor, Windsurf, Codex)",
+  "main": "scripts/install-memory.js",
+  "bin": {
+    "install-memory": "scripts/install-memory.js",
+    "rotate-memory": "scripts/rotate-memory.js",
+    "check-memory": "scripts/check-memory.js"
+  },
+  "scripts": {
+    "install-memory": "node scripts/install-memory.js",
+    "rotate": "node scripts/rotate-memory.js",
+    "check": "node scripts/check-memory.js",
+    "test": "node scripts/check-memory.js"
+  },
+  "keywords": [
+    "antigravity",
+    "claude",
+    "cursor",
+    "windsurf",
+    "agent-memory",
+    "llm-memory",
+    "ai-agent",
+    "skills",
+    "context-window"
+  ],
+  "author": "Ronny / Antigravity",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/agent-memory-skill.git"
+  }
+}

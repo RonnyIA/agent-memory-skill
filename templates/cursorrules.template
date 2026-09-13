@@ -1,0 +1,11 @@
+# Cursor Rules — Persistent 2-Tier Memory System
+
+## Mandatory Memory Protocol
+- At the start of any prompt or task, ALWAYS check `memory.md` to see the current state of the codebase, rules in Section 2, and recent active blocks.
+- If you resolve an architecture bug, dependency conflict, or establish a rule, add a key point to Section 2 of `memory.md`.
+- STRICT 2-3 ACTIVE BLOCKS RULE: Section 3 of `memory.md` must NEVER exceed 3 blocks.
+- When adding a new block if 3 already exist:
+  1. Prepend the oldest block to `docs/CHANGELOG_HISTORY.md` untouched.
+  2. Remove it from `memory.md`.
+  3. Write the new block in `memory.md`.
+- Verify tests and build before concluding. Confirm `memory.md` has strictly 2-3 blocks.

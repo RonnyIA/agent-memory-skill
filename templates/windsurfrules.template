@@ -1,0 +1,8 @@
+# Windsurf / Cascade Rules — Persistent 2-Tier Memory System
+
+## Mandatory Memory Protocol
+- Always read `memory.md` before taking action.
+- Update Section 2 in `memory.md` with critical architectural lessons learned.
+- Maintain strictly between 2 and 3 active blocks in Section 3 of `memory.md`.
+- Rotate the oldest blocks into `docs/CHANGELOG_HISTORY.md` (prepend at top) whenever adding a 4th block.
+- Task completion requires verified build/tests and valid memory rotation.
