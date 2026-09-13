@@ -119,10 +119,10 @@ Para tener tu skill guardada en tu cuenta de GitHub y poder clonarla en cualquie
    git commit -m "feat: initial commit of universal agent-memory skill"
    ```
 
-3. Crea un repositorio vacío en tu GitHub llamado `agent-memory-skill` y vincula el remoto:
+3. Crea un repositorio vacío en tu GitHub llamado `agent-memory` y vincula el remoto:
    ```bash
    git branch -M main
-   git remote add origin https://github.com/TU_USUARIO/agent-memory-skill.git
+   git remote add origin https://github.com/TU_USUARIO/agent-memory.git
    git push -u origin main
    ```
 
