@@ -116,45 +116,40 @@ if (!fs.existsSync(historyPath) || force) {
 }
 
 // 5. Configurar directivas para múltiples agentes
-// A. AGENTS.md y GEMINI.md (Antigravity & modelos genéricos)
-const agentsContent = renderTemplate('AGENTS.template.md', replacements);
-const agentsPath = path.join(targetDir, 'AGENTS.md');
-if (!fs.existsSync(agentsPath) || force) {
-  fs.writeFileSync(agentsPath, agentsContent, 'utf8');
-  console.log(`✅ Creado: AGENTS.md (Directivas universales para agentes IA)`);
+function injectOrPrependRule(filePath, ruleContent, tagKeyword, label) {
+  if (!fs.existsSync(filePath)) {
+    fs.writeFileSync(filePath, ruleContent, 'utf8');
+    console.log(`✅ Creado: ${label}`);
+  } else {
+    const existing = fs.readFileSync(filePath, 'utf8');
+    if (!existing.includes(tagKeyword)) {
+      const merged = `${ruleContent.trim()}\n\n---\n\n${existing.trimStart()}`;
+      fs.writeFileSync(filePath, merged, 'utf8');
+      console.log(`⚡ Inyectada directiva de memoria en: ${label} (preservando tus reglas existentes)`);
+    } else {
+      console.log(`ℹ️  ${label} ya contiene la directiva de memoria.`);
+    }
+  }
 }
 
-const geminiPath = path.join(targetDir, 'GEMINI.md');
-if (!fs.existsSync(geminiPath) || force) {
-  fs.writeFileSync(geminiPath, agentsContent, 'utf8');
-  console.log(`✅ Creado: GEMINI.md (Sincronizado con AGENTS.md)`);
-}
+// A. AGENTS.md y GEMINI.md (Antigravity & modelos genéricos)
+const agentsContent = renderTemplate('AGENTS.template.md', replacements);
+injectOrPrependRule(path.join(targetDir, 'AGENTS.md'), agentsContent, 'DIRECTIVA CRÍTICA OBLIGATORIA', 'AGENTS.md');
+injectOrPrependRule(path.join(targetDir, 'GEMINI.md'), agentsContent, 'DIRECTIVA CRÍTICA OBLIGATORIA', 'GEMINI.md');
 
 // B. CLAUDE.md (Claude Code de Anthropic)
 const claudeContent = renderTemplate('CLAUDE.template.md', replacements);
-const claudePath = path.join(targetDir, 'CLAUDE.md');
-if (!fs.existsSync(claudePath) || force) {
-  fs.writeFileSync(claudePath, claudeContent, 'utf8');
-  console.log(`✅ Creado: CLAUDE.md (Directivas optimizadas para Claude Code)`);
-}
+injectOrPrependRule(path.join(targetDir, 'CLAUDE.md'), claudeContent, 'Critical Memory Directives', 'CLAUDE.md');
 
 // C. .cursorrules (Cursor IDE)
 const cursorContent = renderTemplate('cursorrules.template', replacements);
-const cursorPath = path.join(targetDir, '.cursorrules');
-if (!fs.existsSync(cursorPath) || force) {
-  fs.writeFileSync(cursorPath, cursorContent, 'utf8');
-  console.log(`✅ Creado: .cursorrules (Reglas nativas para Cursor IDE)`);
-}
+injectOrPrependRule(path.join(targetDir, '.cursorrules'), cursorContent, 'Mandatory Memory Protocol', '.cursorrules');
 
 // D. .windsurfrules (Windsurf IDE / Cascade)
 const windsurfContent = renderTemplate('windsurfrules.template', replacements);
-const windsurfPath = path.join(targetDir, '.windsurfrules');
-if (!fs.existsSync(windsurfPath) || force) {
-  fs.writeFileSync(windsurfPath, windsurfContent, 'utf8');
-  console.log(`✅ Creado: .windsurfrules (Reglas nativas para Windsurf / Cascade)`);
-}
+injectOrPrependRule(path.join(targetDir, '.windsurfrules'), windsurfContent, 'Mandatory Memory Protocol', '.windsurfrules');
 
-// E. .agents/rules/memory-directive.md (Antigravity workspace rule)
+// E. .agents/rules/memory-directive.md (Regla jerárquica de máxima prioridad en Antigravity)
 const agentsRulesDir = path.join(targetDir, '.agents', 'rules');
 if (!fs.existsSync(agentsRulesDir)) {
   fs.mkdirSync(agentsRulesDir, { recursive: true });
@@ -162,7 +157,7 @@ if (!fs.existsSync(agentsRulesDir)) {
 const antRulePath = path.join(agentsRulesDir, 'memory-directive.md');
 if (!fs.existsSync(antRulePath) || force) {
   fs.writeFileSync(antRulePath, agentsContent, 'utf8');
-  console.log(`✅ Creado: .agents/rules/memory-directive.md (Regla jerárquica de Antigravity)`);
+  console.log(`✅ Creado: .agents/rules/memory-directive.md (Regla incondicional en Antigravity <user_rules>)`);
 }
 
 console.log(`\n🎉 ¡Sistema de memoria persistente instalado con éxito en "${projectName}"!`);
