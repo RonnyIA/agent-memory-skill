@@ -1,5 +1,5 @@
 ---
-name: agent-memory
+name: agent-memory-skill
 description: >-
   Universal 2-tier persistent rolling memory system (memory.md + CHANGELOG_HISTORY.md)
   for AI coding agents (Antigravity, Claude Code, Cursor, Windsurf, Codex, OpenAI).
